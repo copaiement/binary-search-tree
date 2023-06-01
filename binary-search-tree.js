@@ -72,11 +72,8 @@ class Tree {
       node.right = this.delete(value, node.right);
     } else {
       // if node has only left, right, or is leaf
-      if (node.left === null) {
-        return node.right;
-      } else if (node.right === null) {
-        return node.left;
-      }
+      if (node.left === null) return node.right;
+      if (node.right === null) return node.left;
       // node has two children:
       // move the smaller child to node.data
       node.data = this.#minvalue(node.right);
@@ -84,6 +81,50 @@ class Tree {
       node.right = this.delete(node.data, node.right);
     }
     return node;
+  }
+
+  // find, accepts value and returns node with given value
+  find(value, node = this.root) {
+    // if node is empty, value does not exist in tree
+    if (node === null) return node;
+    // tree traversal
+    if (value < node.data) return this.find(value, node.left);
+    if (value > node.data) return this.find(value, node.right);
+    return node;
+  }
+
+  // levelOrder, traverses tree in breadth-first order
+  // levelOrder(function) {
+
+  // }
+
+  // height, accepts a node and returns longest path to a leaf node
+  // if no argument is given, function will use root
+  height(node = this.root) {
+    // reject empty
+    if (node === null) return 0;
+    // if branches are empty, we've reached the end
+    if (node.left === null && node.right === null) return 0;
+    // tree traversal
+    let lHeight = this.height(node.left);
+    let rHeight = this.height(node.right);
+    return Math.max(lHeight, rHeight) + 1;
+  }
+
+  // depth, accepts a node and returns path to root
+  depth(node, root = this.root) {
+    // reject empty
+    if (node === null || root === null) return 0;
+    let depth = 0;
+    if (node.data < root.data) {
+      depth++;
+      return this.depth(node, root.left);
+    }
+    if (node.data > root.data) {
+      depth++;
+      return this.depth(node, root.right);
+    }
+    return depth;
   }
 }
 
@@ -111,10 +152,14 @@ let testTree = new Tree(sortedTest);
 console.log(testTree.root);
 prettyPrint(testTree.root);
 testTree.insert(7);
+testTree.delete(1);
 console.log(testTree.root);
 prettyPrint(testTree.root);
-testTree.delete(3);
-console.log(testTree.root);
-prettyPrint(testTree.root);
+console.log(testTree.find(4));
+let testHeight = testTree.find(7);
+// testTree.height();
+// testTree.height(2);
+console.log(testTree.depth(testHeight));
+
 
 
