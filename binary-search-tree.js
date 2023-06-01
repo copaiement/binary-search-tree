@@ -37,22 +37,22 @@ class Tree {
   }
 
   insert(value, node = this.root) {
-    // if node is empty, insert
-    console.log(value, node)
-    if (node === null) {
-      console.log('test');
-      let insert = Node(value);
-      return insert;
-    }
     // ignore duplicates
     if (value === node.data) return;
     // if value is < node.data, move left, if > node.data, move right
     if (value < node.data) {
+      if (node.left === null) {
+        node.left = Node(value);
+        return;
+      }
       this.insert(value, node.left);
     } else if (value > node.data) {
+      if (node.right === null) {
+        node.right = Node(value);
+        return;
+      }
       this.insert(value, node.right);
     }
-    return node;
   }
 }
 
@@ -80,6 +80,6 @@ let testTree = new Tree(sortedTest);
 console.log(testTree.root);
 prettyPrint(testTree.root);
 testTree.insert(7);
-prettyPrint(testTree.root);
 console.log(testTree.root);
+prettyPrint(testTree.root);
 
