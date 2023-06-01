@@ -35,6 +35,25 @@ class Tree {
     // return root
     return node;
   }
+
+  insert(value, node = this.root) {
+    // if node is empty, insert
+    console.log(value, node)
+    if (node === null) {
+      console.log('test');
+      let insert = Node(value);
+      return insert;
+    }
+    // ignore duplicates
+    if (value === node.data) return;
+    // if value is < node.data, move left, if > node.data, move right
+    if (value < node.data) {
+      this.insert(value, node.left);
+    } else if (value > node.data) {
+      this.insert(value, node.right);
+    }
+    return node;
+  }
 }
 
 // print function
@@ -53,10 +72,14 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 
 
 
-let testArray = [1, 8, 19, 22, 71, 4, 15, 23, 99, 71, 2, 3, 18];
+let testArray = [1, 8, 19, 22, 71, 4, 8, 15, 15, 23, 99, 71, 2, 3, 18];
 
 let sortedTest = [6, 5, 2, 1, 3, 4, 4, 4, 4, 4, 4];
 
 let testTree = new Tree(sortedTest);
-console.log(testTree);
+console.log(testTree.root);
 prettyPrint(testTree.root);
+testTree.insert(7);
+prettyPrint(testTree.root);
+console.log(testTree.root);
+
