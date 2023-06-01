@@ -19,6 +19,16 @@ class Tree {
     return [...new Set(array)].sort((a, b) => a - b);
   }
 
+  // private method to find min value
+  #minvalue(node) {
+    let min = node.data;
+    while (node.left !== null) {
+      min = node.left.data;
+      node = node.left;
+    }
+    return min;
+  }
+
   buildTree(array) {
     // sort array
     let cleanArray = this.#sort(array);
@@ -36,6 +46,7 @@ class Tree {
     return node;
   }
 
+  // insert a value
   insert(value, node = this.root) {
     // if node is empty, create new
     if (node === null) return Node(value);
@@ -46,6 +57,31 @@ class Tree {
       node.left = this.insert(value, node.left);
     } else if (value > node.data) {
       node.right = this.insert(value, node.right);
+    }
+    return node;
+  }
+
+  // delete a value
+  delete(value, node = this.root) {
+    // if node is empty, value does not exist in tree
+    if (node === null) return node;
+    // tree traversal
+    if (value < node.data) {
+      node.left = this.delete(value, node.left);
+    } else if (value > node.data) {
+      node.right = this.delete(value, node.right);
+    } else {
+      // if node has only left, right, or is leaf
+      if (node.left === null) {
+        return node.right;
+      } else if (node.right === null) {
+        return node.left;
+      }
+      // node has two children:
+      // move the smaller child to node.data
+      node.data = this.#minvalue(node.right);
+      // run delete again with smaller child to remove it
+      node.right = this.delete(node.data, node.right);
     }
     return node;
   }
@@ -74,7 +110,11 @@ let sortedTest = [6, 5, 2, 1, 3, 4, 4, 4, 4, 4, 4];
 let testTree = new Tree(sortedTest);
 console.log(testTree.root);
 prettyPrint(testTree.root);
-testTree.insert(6);
+testTree.insert(7);
 console.log(testTree.root);
 prettyPrint(testTree.root);
+testTree.delete(3);
+console.log(testTree.root);
+prettyPrint(testTree.root);
+
 
