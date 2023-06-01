@@ -98,6 +98,48 @@ class Tree {
 
   // }
 
+  // inorder, traverses tree in order, lowest to highest
+  // if no function given, return array of values
+  inorder(func, node = this.root, arr = []) {
+    // if node is empty, return
+    if (node === null) return;
+    this.inorder(func, node.left, arr);
+    if (!func) {
+      arr.push(node.data);
+    } else {
+      func(node);
+    }
+    this.inorder(func, node.right, arr);
+    if (!func) return arr;
+  }
+
+  // preorder, traverses tree in preorder, node, then left, then right
+  preorder(func, node = this.root, arr = []) {
+    // if node is empty, return
+    if (node === null) return;
+    if (!func) {
+      arr.push(node.data);
+    } else {
+      func(node);
+    }
+    this.preorder(func, node.left, arr);
+    this.preorder(func, node.right, arr);
+    if (!func) return arr;
+  }
+
+  // postorder, traverses tree in postorder, left, then right, then node
+  postorder(func, node = this.root, arr = []) {
+    // if node is empty, return
+    if (node === null) return;
+    this.preorder(func, node.left, arr);
+    this.preorder(func, node.right, arr);
+    if (!func) {
+      arr.push(node.data);
+      return arr;
+    }
+    func(node);
+  }
+
   // height, accepts a node and returns longest path to a leaf node
   // if no argument is given, function will use root
   height(node = this.root) {
@@ -127,6 +169,10 @@ class Tree {
     if (node.left !== null) this.isBalanced(node.left);
     if (node.right !== null) this.isBalanced(node.right);
     return true;
+  }
+
+  rebalance(node = this.root) {
+
   }
 }
 
@@ -163,6 +209,8 @@ let testHeight = testTree.find(100);
 // testTree.height(2);
 console.log(testTree.depth(testHeight));
 console.log(testTree.isBalanced());
+console.log(testTree.inorder());
+console.log(testTree.postorder());
 
 
 
