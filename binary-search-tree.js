@@ -115,16 +115,18 @@ class Tree {
   depth(node, root = this.root) {
     // reject empty
     if (node === null || root === null) return 0;
-    let depth = 0;
-    if (node.data < root.data) {
-      depth++;
-      return this.depth(node, root.left);
-    }
-    if (node.data > root.data) {
-      depth++;
-      return this.depth(node, root.right);
-    }
-    return depth;
+    if (node.data < root.data) return this.depth(node, root.left) + 1;
+    if (node.data > root.data) return this.depth(node, root.right) + 1;
+    return 0;
+  }
+
+  isBalanced(node = this.root) {
+    let lHeight = this.height(node.left);
+    let rHeight = this.height(node.right);
+    if (Math.abs(lHeight - rHeight) > 1) return false;
+    if (node.left !== null) this.isBalanced(node.left);
+    if (node.right !== null) this.isBalanced(node.right);
+    return true;
   }
 }
 
@@ -151,15 +153,16 @@ let sortedTest = [6, 5, 2, 1, 3, 4, 4, 4, 4, 4, 4];
 let testTree = new Tree(sortedTest);
 console.log(testTree.root);
 prettyPrint(testTree.root);
-testTree.insert(7);
+// testTree.insert(7);
 testTree.delete(1);
 console.log(testTree.root);
 prettyPrint(testTree.root);
 console.log(testTree.find(4));
-let testHeight = testTree.find(7);
+let testHeight = testTree.find(100);
 // testTree.height();
 // testTree.height(2);
 console.log(testTree.depth(testHeight));
+console.log(testTree.isBalanced());
 
 
 
