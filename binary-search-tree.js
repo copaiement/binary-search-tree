@@ -162,6 +162,7 @@ class Tree {
     return 0;
   }
 
+  // checks if is balanced
   isBalanced(node = this.root) {
     let lHeight = this.height(node.left);
     let rHeight = this.height(node.right);
@@ -171,8 +172,8 @@ class Tree {
     return true;
   }
 
-  rebalance(node = this.root) {
-
+  rebalance() {
+    this.root = this.buildTree(this.inorder());
   }
 }
 
@@ -199,7 +200,7 @@ let sortedTest = [6, 5, 2, 1, 3, 4, 4, 4, 4, 4, 4];
 let testTree = new Tree(sortedTest);
 console.log(testTree.root);
 prettyPrint(testTree.root);
-// testTree.insert(7);
+testTree.insert(7);
 testTree.delete(1);
 console.log(testTree.root);
 prettyPrint(testTree.root);
@@ -211,6 +212,8 @@ console.log(testTree.depth(testHeight));
 console.log(testTree.isBalanced());
 console.log(testTree.inorder());
 console.log(testTree.postorder());
-
+testTree.rebalance();
+prettyPrint(testTree.root);
+console.log(testTree.isBalanced());
 
 
