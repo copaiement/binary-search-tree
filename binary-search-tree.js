@@ -187,23 +187,21 @@ class Tree {
   rebalance() {
     this.root = this.buildTree(this.inorder());
   }
+
+  // prettyPrint, written by TOP
+  prettyPrint(node = this.root, prefix = '', isLeft = true) {
+    if (node === null) {
+      return;
+    }
+    if (node.right !== null) {
+      this.prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+    }
+    console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+    if (node.left !== null) {
+      this.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+    }
+  }
 }
-
-// print function
-const prettyPrint = (node, prefix = '', isLeft = true) => {
-  if (node === null) {
-    return;
-  }
-  if (node.right !== null) {
-    prettyPrint(node.right, `${prefix}${isLeft ? '│   ' : '    '}`, false);
-  }
-  console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
-  if (node.left !== null) {
-    prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
-  }
-};
-
-
 
 let testArray = [1, 8, 19, 22, 71, 4, 8, 15, 15, 23, 99, 71, 2, 3, 18];
 
@@ -211,11 +209,11 @@ let sortedTest = [6, 5, 2, 1, 3, 4, 4, 4, 4, 4, 4];
 
 let testTree = new Tree(sortedTest);
 console.log(testTree.root);
-prettyPrint(testTree.root);
+
 testTree.insert(7);
 testTree.delete(1);
 console.log(testTree.root);
-prettyPrint(testTree.root);
+
 console.log(testTree.find(4));
 let testHeight = testTree.find(100);
 // testTree.height();
@@ -225,7 +223,7 @@ console.log(testTree.isBalanced());
 console.log(testTree.inorder());
 console.log(testTree.postorder());
 testTree.rebalance();
-prettyPrint(testTree.root);
+testTree.prettyPrint();
 console.log(testTree.isBalanced());
 console.log(testTree.levelOrder());
 
