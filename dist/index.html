@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Search Tree</title>
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <div class="content">
+    <div class="inputs-container">
+      <div class="inputs">
+        <fieldset>
+          <legend>Generate Random Array</legend>
+          <label for="randomArraySize">Array Size:</label>
+          <input type="number" min="1" max="20" id="randomArraySize" name="randomArraySize" placeholder="Enter a number 1 to 20" required>
+          <button type="button" id="getRandomArr">Generate</button>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Create Custom Array</legend>
+          <label for="customArrayValues">Array Values:</label>
+          <input type="text" id="customArrayValues" name="customArrayValues" placeholder="Enter comma-separated values" required>
+          <button type="button" id="getCustomArr">Generate</button>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Add Node</legend>
+          <label for="nodeValue">Node Value:</label>
+          <input type="number" min="1" id="nodeValue" name="nodeValue" placeholder="Enter 1 or higher" required>
+          <button type="button" id="addBtn">Add Value</button>
+        </fieldset>
+        
+        <fieldset>
+          <legend>Rebalance</legend>
+          <button type="button" id="rebalanceBtn">Rebalance</button>
+        </fieldset>
+        
+      </div>
+    </div>
+    <div class="outputs">
+      <div class="data-panel">
+        <div class="data">
+          <div>Balanced:</div>
+          <div class="isbalanced"></div>
+        </div>
+        <div class="data">
+          <div>Level Order:</div>
+          <div class="level-order"></div>
+        </div>
+        <div class="data">
+          <div>Inorder:</div>
+          <div class="inorder"></div>
+        </div>
+        <div class="data">
+          <div>Preorder:</div>
+          <div class="preorder"></div>
+        </div>
+        <div class="data">
+          <div>Postorder:</div>
+          <div class="postorder"></div>
+        </div>
+      </div>
+      <div class="display-container">
+        <div>Tree Display:</div>
+        <div class="display">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

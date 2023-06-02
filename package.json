@@ -1,0 +1,27 @@
+{
+  "name": "binary-search-tree",
+  "version": "1.0.0",
+  "description": "A JavaScript balanced Binary Search Tree",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/copaiement/binary-search-tree.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/copaiement/binary-search-tree/issues"
+  },
+  "homepage": "https://github.com/copaiement/binary-search-tree#readme",
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.85.0",
+    "webpack-cli": "^5.1.1"
+  }
+}
