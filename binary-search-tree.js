@@ -203,28 +203,35 @@ class Tree {
   }
 }
 
-let testArray = [1, 8, 19, 22, 71, 4, 8, 15, 15, 23, 99, 71, 2, 3, 18];
+function driver(length) {
+  // create tree
+  let arr = [];
+  for (let i = 0; i < length; i++) {
+    // no zero values
+    let rand = Math.floor(Math.random() * 99) + 1;
+    arr.push(rand);
+  }
+  let tree = new Tree(arr);
+  
+  console.log(tree.isBalanced());
+  console.log(tree.levelOrder());
+  console.log(tree.inorder());
+  console.log(tree.preorder());
+  console.log(tree.postorder());
+  tree.insert(155);
+  tree.insert(2378);
+  tree.insert(101);
+  tree.insert(109);
+  tree.insert(552);
+  tree.insert(1325);
+  console.log(tree.isBalanced());
+  tree.rebalance();
+  console.log(tree.isBalanced());
+  console.log(tree.levelOrder());
+  console.log(tree.inorder());
+  console.log(tree.preorder());
+  console.log(tree.postorder());
+  tree.prettyPrint();
+}
 
-let sortedTest = [6, 5, 2, 1, 3, 4, 4, 4, 4, 4, 4];
-
-let testTree = new Tree(sortedTest);
-console.log(testTree.root);
-
-testTree.insert(7);
-testTree.delete(1);
-console.log(testTree.root);
-
-console.log(testTree.find(4));
-let testHeight = testTree.find(100);
-// testTree.height();
-// testTree.height(2);
-console.log(testTree.depth(testHeight));
-console.log(testTree.isBalanced());
-console.log(testTree.inorder());
-console.log(testTree.postorder());
-testTree.rebalance();
-testTree.prettyPrint();
-console.log(testTree.isBalanced());
-console.log(testTree.levelOrder());
-
-
+driver(4);
