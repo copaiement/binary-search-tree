@@ -94,9 +94,21 @@ class Tree {
   }
 
   // levelOrder, traverses tree in breadth-first order
-  // levelOrder(function) {
-
-  // }
+  levelOrder(func, queue = [this.root], arr = []) {
+    // pull value from queue
+    let node = queue.shift();
+    // if node is empty, return
+    if (node === null) return;
+    if (!func) {
+      arr.push(node.data);
+    } else {
+      func(node);
+    }
+    if (node.left !== null) queue.push(node.left);
+    if (node.right !== null) queue.push(node.right);
+    if (queue.length > 0) this.levelOrder(func, queue, arr);
+    if (!func) return arr;
+  }
 
   // inorder, traverses tree in order, lowest to highest
   // if no function given, return array of values
@@ -215,5 +227,6 @@ console.log(testTree.postorder());
 testTree.rebalance();
 prettyPrint(testTree.root);
 console.log(testTree.isBalanced());
+console.log(testTree.levelOrder());
 
 
